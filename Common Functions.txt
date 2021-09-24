@@ -1,0 +1,18 @@
+    PrereqTestCasesStatusUpdate = False # True or False
+    SuccessMessage = "Test Case Passed Successfully"
+    FailedMessage = "Failed"
+    # global ExecutionDate,ExecutionTime,OutPutFilePath,SystemUser,WindowServer
+    ExecutionDate = str(datetime.now().date())
+    ExecutionTime = str(time.strftime("%H:%M:%S", time.localtime()))
+    platformsystem = str(platform.system())
+    platformrelease = str(platform.release())
+    WindowServer = str(platformsystem+platformrelease)
+    SystemUser = os.getlogin()
+    ds = DF.dataStorage()
+    authuser = ds.ReadDataFromDataFile('Configs', 'Email')
+    EncrypEmail = str(base64.b64encode(authuser.encode('ascii')))[2:-1]
+    authpasssword = ds.ReadDataFromDataFile('Configs', 'Password')
+    Domain = ds.ReadDataFromDataFile('Configs', 'Domain')
+    mastertoken = ds.ReadDataFromDataFile('Configs', 'mastertoken')
+    OutPutFilePath= ds.ReadDataFromDataFile('Configs', 'OutPutFilePath')
+    datainifilepath = os.path.dirname(os.path.abspath(__file__))+'\\Data.ini'+''
